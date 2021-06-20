@@ -1,0 +1,167 @@
+extends base
+
+block content 
+	.sub-banner
+		.container
+			.breadcrumb-area
+				h1 Submit Property
+				ul.breadcrumbs
+					li
+						a(href='/') Home
+					li.active Submit Property
+	// Sub banner end
+	// User page start
+	.user-page.submit-property.content-area-7
+		.container
+			.row
+				.col-lg-12
+					//- .notification-box.mb-50
+					//- 	h4 Don&apos;t Have an Account?
+					//- 	p
+					//- 		| Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&apos;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries.But also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing
+					.search-area.contact-2
+						.search-area-inner
+							.search-contents
+								form#submit_property_form
+									h3.heading-3 Basic Information
+									.my_alerts
+									.row.mb-30
+										.col-lg-4.col-md-6
+											.form-group
+												label Property Title
+												input#title_of_property.form-control(type='text' name='property-title' placeholder='Property Title')
+
+										.col-lg-4.col-md-6
+											.form-group
+												label Price
+												input#price_of_property.form-control(type='text' name='price' placeholder='USD')
+										.col-lg-4.col-md-6
+											.form-group
+												label Bedrooms
+												select.selectpicker.search-fields#bedrooms_select(name='bedrooms')
+													option(value="" disabled selected hidden) Bedrooms
+													option(value="1") 1
+													option(value="2") 2
+													option(value="3") 3
+													option(value="4") 4
+													option(value="5") 5
+										.col-lg-4.col-md-6
+											.form-group
+												label Beds
+												select.selectpicker.search-fields#beds_select(name='beds')
+													option(value="" disabled selected hidden) Beds
+													option(value="1") 1
+													option(value="2") 2
+													option(value="3") 3
+													option(value="4") 4
+													option(value="5") 5
+										.col-lg-4.col-md-6
+											.form-group
+												label Bathroom
+												select.selectpicker.search-fields#bathrooms_select(name='bathrooms')
+													option(value="" disabled selected hidden) Bathrooms
+													option(value="1") 1
+													option(value="2") 2
+													option(value="3") 3
+													option(value="4") 4
+													option(value="5") 5
+										.col-lg-4.col-md-6
+											.form-group
+												label City
+												select.selectpicker.search-fields#city_select(name='city')
+													option(value="" disabled selected hidden) City
+													option(value="lagos") Lagos
+													option(value="ibadan") Ibadan
+													option(value="Abuja") Abuja
+										.col-lg-4.col-md-6
+											.form-group
+												label City
+												select.selectpicker.search-fields#location_select(name='location')
+													option(value="" disabled selected hidden) Location
+													option(value="Nigeria") Nigeria
+									h3.heading-3 Features (optional)
+									.row.mb-30
+										.col-lg-4.col-md-4
+											.form-group
+												.form-check.checkbox-theme
+													input#air-condition.form-check-input(type='checkbox' value='')
+													label.form-check-label(for='air-condition')
+														| Air Condition
+											.form-group
+												.form-check.checkbox-theme
+													input#wifi.form-check-input(type='checkbox' value='')
+													label.form-check-label(for='wifi')
+														| Wifi
+											.form-group
+												.form-check.checkbox-theme
+													input#swimming-pool.form-check-input(type='checkbox' value='')
+													label.form-check-label(for='swimming-pool')
+														| Swimming Pool
+										.col-lg-4.col-md-4
+											.form-group
+												.form-check.checkbox-theme
+													input#telephone.form-check-input(type='checkbox' value='')
+													label.form-check-label(for='telephone')
+														| Telephone
+											.form-group
+												.form-check.checkbox-theme
+													input#free-parking.form-check-input(type='checkbox' value='')
+													label.form-check-label(for='free-parking')
+														| Parking
+											.form-group
+												.form-check.checkbox-theme
+													input#television.form-check-input(type='checkbox' value='')
+													label.form-check-label(for='television')
+														| Televison
+										.col-lg-4.col-md-4
+											.form-group
+												.form-check.checkbox-theme
+													input#alarm.form-check-input(type='checkbox' value='')
+													label.form-check-label(for='alarm')
+														| Alarm
+											.form-group
+												.form-check.checkbox-theme
+													input#home-theatre.form-check-input(type='checkbox' value='')
+													label.form-check-label(for='home-theatre')
+														| Home Theatre
+											.form-group
+												.form-check.checkbox-theme
+													input#home-security.form-check-input(type='checkbox' value='')
+													label.form-check-label(for='home-security')
+														| Security
+										.col-lg-4.col-md-4
+											.form-group
+												.form-check.checkbox-theme
+													input#gym.form-check-input(type='checkbox' value='')
+													label.form-check-label(for='gym')
+														| Gym
+										.col-lg-4.col-md-4
+											.form-group
+												.form-check.checkbox-theme
+													input#electric-range.form-check-input(type='checkbox' value='')
+													label.form-check-label(for='electric-range')
+														| Electric Range
+										.col-lg-4.col-md-4
+											.form-group
+												.form-check.checkbox-theme
+													input#private-space.form-check-input(type='checkbox' value='')
+													label.form-check-label(for='private-space')
+														| Private Space
+											
+									h3.heading-3 Property Gallery
+										.col-lg-12 
+											.form-group.photo 
+												label Upload Property Image 
+												input.form__upload(type="file", accept="image/*", id='photo_property', name='photo')
+										.col-lg-12 
+											.form-group.photo 
+												label Upload Property Cover Images 
+												input.form__upload(type="file", accept="image/*", id='coverImage_property', name='coverPhoto' multiple)
+									h3.heading-3 Detailed Information
+									.row.mb-30
+										.col-lg-12
+											.form-group.message
+												label Detailed Information
+												textarea.form-control(name='message' placeholder='Detailed Information' id="property_details")
+										.col-lg-12
+											button.btn.btn-md.btn-color(type="submit") Submit

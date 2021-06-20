@@ -1,0 +1,276 @@
+extends base
+
+
+mixin realtorTab(styleT, user)
+	.col-xl-3.col-lg-3.col-md-6.col-sm-12.wow(class=`${styleT}`)
+		.agent-2
+			.agent-photo
+				img.img-fluid(src=`assets/img/avatar/${user.photo}` alt='agent-grid-2')
+			.agent-details
+				h5
+					a #{user.name}
+				p #{user.role.toUpperCase()}
+
+mixin slideItem(estate)
+	.slick-slide-item
+		.property-box
+			.property-thumbnail
+				a.property-img(href=`/estate/${estate.slug}`)
+					.listing-badges
+						span.featured Featured
+					.tag-for For Rent
+					.plan-price
+						sup $
+						| #{estate.price}
+						span 
+					img.img-fluid(src=`/assets/img/property/${estate.image}` alt='property-box')
+				.property-overlay
+
+			.detail
+				h1.title
+					a(href=`/estate/${estate.slug}`) #{estate.title}
+				.location
+					a(href=`/estate/${estate.slug}`)
+						i.flaticon-facebook-placeholder-for-locate-places-on-maps
+						| #{estate.city}, #{estate.country}
+				ul.facilities-list.clearfix
+					li
+						i.flaticon-bed
+						|  #{estate.bedrooms} Bedrooms
+					li
+						i.flaticon-bath
+						|  #{estate.bathrooms} Bathrooms
+					li
+						i.flaticon-car-repair
+						|  #{estate.beds} Beds
+			.footer
+				a(href='#')
+					i.fa.fa-user
+					|  #{estate.realtor.name}
+				span
+					i.fa.fa-calendar-o
+					|  #{estate.createdAt.toDateString()}
+
+mixin recentItem(est)
+	.col-lg-3.col-md-6.col-sm-12.wow(class=`${classP}`)
+		.property-box-8
+			.property-photo
+				img.img-fluid(src=`/assets/img/property/${est.image}` alt='property-8')
+				.tag-for For Rent
+				.price-ratings-box
+					p.price $#{est.price}
+					.ratings
+						i.fa.fa-star
+						i.fa.fa-star
+						i.fa.fa-star
+						i.fa.fa-star
+						i.fa.fa-star-o
+			.detail
+				.heading
+					h3
+						a(href=`/estate/${est.slug}`) #{est.title}
+					.location
+						a(href=`/estate/${est.slug}`)
+							i.flaticon-facebook-placeholder-for-locate-places-on-maps
+							| #{est.city}
+				.properties-listing
+					span #{est.beds} Beds
+					span #{est.bathrooms} Baths
+					span #{est.bedrooms} bedrooms
+
+
+block content
+
+	#banner.banner
+		#carouselExampleIndicators.carousel.slide(data-ride='carousel')
+			.carousel-inner
+				.carousel-item.active.item-bg
+					img.d-block.w-100.h-100(src='assets/img/banner/img-8.jpg' alt='banner')
+					.carousel-caption.banner-slider-inner.d-flex.h-100.text-center
+						.carousel-content.container.b1-inner
+							.tab-search-section
+								h1 Get Quality Rooms
+								#typed-strings
+									p Find new &amp; featured rooms located in your local city.
+								h1.typed-text.tt2
+									span#typed
+								.tab-box
+									#pills-tabContent.tab-content
+										#pills-home.tab-pane.fade.active.show(role='tabpanel' aria-labelledby='pills-home-tab')
+											.search-area.search-area-6
+												.search-area-inner
+													.search-contents
+														form#search_query_form
+															.row
+																.col-lg-3.col-md-12.col-sm-12.col-xs-6.col-pad2
+																	.form-group
+																		select.selectpicker.search-fields#city--selection(name='location')
+																			option(value="" disabled selected hidden) Location
+																			option(value="lagos") Lagos
+																			option(value="ibadan") Ibadan
+																			option(value="abuja") Abuja
+																.col-lg-3.col-md-12.col-sm-12.col-xs-6.col-pad2
+																	.form-group
+																		select.selectpicker.search-fields#bedrooms--selection(name='bedrooms')
+																			option(value="" disabled selected hidden) Rooms
+																			option(value="1") 1
+																			option(value="2") 2
+																			option(value="3") 3
+																			option(value="4") 4
+																			option(value="5+") greater than 5
+																.col-lg-3.col-md-12.col-sm-12.col-xs-6.col-pad2
+																	.form-group
+																		select.selectpicker.search-fields#bathrooms--selection(name='bathrooms')
+																			option(value="" disabled selected hidden) bathrooms
+																			option(value="1") 1
+																			option(value="2") 2
+																			option(value="3") 3
+																			option(value="4") 4
+																			option(value="5+") greater than 5
+																.col-lg-3.col-md-12.col-sm-12.col-xs-6.col-pad2.cp3
+																	.form-group.fg2
+																		button.search-button.btn-md.btn-color(type="submit")
+																			| Search
+															.row 
+																.col-lg-4.col-lg-12.col-sm-12.col-xs-12.col-pad2
+																	.my-address.contact-2#searchContent(style='display: none')
+																		.my-properties
+																			table.manage-table
+																				thead
+																					tr
+																						th 	
+																				tbody.responsive-table
+																					tr(style="background-color: blue")
+																						td.title-container#SearchTitleElement(style="border-radius: 100px")
+																							h5
+																								a#searchTitle(style="color: black")
+																							h6
+																								span#searchCity
+
+																						//- 	i 
+																						//- //- 	| 
+																						//- //- td.action
+																						//- //- 	ul
+																						//- //- 		li.estate_hide
+																						//- //- 			a
+																						//- //- 				i.fa.fa-eye-slash
+																						//- //- 				|  Hide
+																						//- //- 		li.estate_delete
+																						//- //- 			a.delete
+																						//- //- 				i.fa.fa-remove
+																						//- //- 				|  Delete
+
+
+	// banner end
+	// Featured properties start
+	.featured-properties.content-area-7
+		.container-fluid
+			.main-title
+				h1 Featured Properties
+				p Get quality apartments for rent
+			- const estRand = estates.sort(() => Math.random() - 0.5)
+			.row.slick-fullwidth.wow.fadeInUp.delay-04s
+				+slideItem(estRand[0])
+				+slideItem(estRand[1])
+				+slideItem(estRand[2])
+				+slideItem(estRand[3])
+				+slideItem(estRand[4])
+				.slick-prev.slick-arrow-buton
+					i.fa.fa-angle-left
+				.slick-next.slick-arrow-buton
+					i.fa.fa-angle-right
+	// Featured properties end
+	// services 3 start
+	.services-3.content-area-20.bg-white
+		.container
+			.main-title
+				h1 What Are you Looking For?
+				p We are always at your service
+			.row
+				.col-lg-3.col-md-6.col-sm-12.wow.fadeInLeft.delay-04s
+					.services-info-3
+						i.flaticon-hotel-building
+						h5 Apartments Clean
+						p
+							| We offer apartment cleaning services every morning
+							
+				.col-lg-3.col-md-6.col-sm-12.wow.fadeInUp.delay-04s
+					.services-info-3
+						i.flaticon-house
+						h5 Rooms
+						p
+							| We provide you with top class rooms
+
+
+				.col-lg-3.col-md-6.col-sm-12.wow.fadeInDown.delay-04s
+					.services-info-3
+						i.flaticon-call-center-agent
+						h5 Support 24/7
+						p
+							| We have a consistent customer support team
+
+
+				.col-lg-3.col-md-6.col-sm-12.wow.fadeInRight.delay-04s
+					.services-info-3
+						i.flaticon-office-block
+						h5 Commercial
+						p
+							| We provide commercial services when needed
+
+	// services 3 end
+	// Recent Properties start
+	.recent-properties.content-area-2
+		.container
+			.main-title
+				h1 Recent Properties
+				p Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+			.row
+				each estate in estates.slice(0, 4)
+					+recentItem(estate)
+
+	// Recent Properties end
+	// Most popular places start
+	.agent.content-area
+		.container
+			.main-title
+				h1 Meet Our Realtors
+				p These are some of our best Realtors
+			.row
+				- const stylesTest = ["fadeInLeft.delay-04s", "fadeInLeft.delay-04s", "fadeInRight.delay-04s", "fadeInRight.delay-04s"]
+				each user in users
+					if user.role === "realtor"
+						- let i = 0
+						+realtorTab(stylesTest[i], user)
+						- i + 1
+	// Agent end
+
+	// Testimonial 4 end
+	// Blog start
+	//- .blog.content-area-2
+	//- 	.container
+	//- 		.main-title
+	//- 			h1 Latest Blog
+	//- 			p Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+	//- 		.row
+	//- 			each post in posts.slice(0, 2)
+	//- 				+blogPost(post)
+	// Blog start
+	// Our newslatters start
+	.our-newslatters
+		.container
+			.row
+				.col-lg-12
+					h3 Get Newsletter
+					p
+						| Your download should start automatically, if not Click here.
+						| Should I give up, huh?.
+					.form-info
+						form#newsletter-form
+							.row
+								.col-lg-9.col-md-9.col-sm-9.col-12
+									.form-group.email
+										input.form-control#newsletter_email(type='email' name='email' placeholder='Email')
+								.col-lg-3.col-md-3.col-sm-3.col-12
+									.send-btn
+										button.btn.btn-color.btn-md.btn-message(type='submit')
+											| Subscribe

@@ -1,0 +1,112 @@
+extends base
+
+
+
+mixin searchTemp()
+	.col-lg-4.col-md-6.col-sm-12
+					.property-box
+						.property-thumbnail
+							a.property-img(href='properties-details.html')
+								.listing-badges
+									span.featured Featured
+								.tag-for For Sale
+								.plan-price
+									sup $
+									| 820
+									span /month
+								img.img-fluid(src='assets/img/property/img-1.jpg' alt='property-box')
+							.property-overlay
+								a.overlay-link(href='properties-details.html')
+									i.fa.fa-link
+								a.overlay-link.property-video(title='Test Title')
+									i.fa.fa-video-camera
+								.property-magnify-gallery
+									a.overlay-link(href='assets/img/property/img-1.jpg')
+										i.fa.fa-expand
+									a.hidden(href='assets/img/property/img-6.jpg')
+									a.hidden(href='assets/img/property/img-2.jpg')
+						.detail
+							h1.title
+								a(href='properties-details.html') Relaxing Apartment
+							.location
+								a(href='properties-details.html')
+									i.flaticon-facebook-placeholder-for-locate-places-on-maps
+									| 123 Kathal St. Tampa City,
+							ul.facilities-list.clearfix
+								li
+									i.flaticon-bed
+									|  3 Bedrooms
+								li
+									i.flaticon-bath
+									|  2 Bathrooms
+								li
+									i.flaticon-square-layouting-with-black-square-in-east-area
+									|  Sq Ft:3400
+								li
+									i.flaticon-car-repair
+									|  1 Garage
+						.footer
+							a(href='#')
+								i.fa.fa-user
+								|  Jhon Doe
+							span
+								i.fa.fa-calendar-o
+								|  2 day ago
+
+
+
+block content
+	.sub-banner
+		.container
+			.breadcrumb-area
+				h1 #{title}
+				ul.breadcrumbs
+					li
+						a(href='/') Home
+					li.active Rooms Grid
+	// Sub banner end
+	// Properties list fullwidth start
+	.properties-list-fullwidth.content-area-2
+		.container
+			.option-bar
+				.row.clearfix
+					.col-xl-4.col-lg-5.col-md-5.col-sm-5.col-3
+						h4
+							span.heading-icon
+								i.fa.fa-caret-right.icon-design
+								i.fa.fa-th-large
+							span.heading Properties Grid
+					.col-xl-8.col-lg-7.col-md-7.col-sm-7.col-9
+						.sorting-options.clearfix
+							a.change-view-btn(href='properties-list-fullwidth.html')
+								i.fa.fa-th-list
+							a.change-view-btn.active-view-btn(href='properties-grid-fullwidth.html')
+								i.fa.fa-th-large
+						.search-area
+							select.selectpicker.search-fields(name='location')
+								option High to Low
+								option Low to High
+			
+			.subtitle
+				//- | #{data} Result Found
+			.row
+				//- each estate in searchedData
+				+searchTemp()
+			.col-lg-12
+					.pagination-box.text-center
+						nav(aria-label='Page navigation example')
+							ul.pagination
+								li.page-item
+									a.page-link(href='properties-grid-leftside.html')
+										span(aria-hidden='true') &laquo;
+								li.page-item
+									a.page-link(href='properties-grid-rightside.html') 1
+								li.page-item
+									a.page-link(href='properties-grid-leftside.html') 2
+								li.page-item
+									a.page-link.active(href='properties-grid-fullwidth.html') 3
+								li.page-item
+									a.page-link(href='properties-grid-fullwidth.html')
+										span(aria-hidden='true') &raquo;
+	// Properties list fullwidth end
+	

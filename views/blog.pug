@@ -1,0 +1,214 @@
+extends base
+
+mixin recentProperties(property)
+	.media.mb-4
+		a(href=`/estate/${property.slug}`)
+			img(src=`/assets/img/property/${property.image}` alt='sub-property')
+		.media-body.align-self-center
+			h5
+				a(href=`/estate/${property.slug}`) #{property.title}
+			p #{property.createdAt.toDateString()} | $#{property.price}
+
+block content
+
+	.sub-banner
+		.container
+			.breadcrumb-area
+				h1 #{title}
+				ul.breadcrumbs
+					li
+						a(href='/') Home
+					li.active Blog Details
+	// Sub banner end
+	// Blog section start
+	.blog-section.content-area-21
+		.container
+			.row
+				.col-lg-8.col-md-12
+					// Blog grid box start
+					.blog-1.mb-50
+						.blog-photo
+							img.img-fluid(src='/assets/img/blog/blog-3.jpg' alt='blog')
+							.user
+								.avatar
+									img.img-fluid.rounded-circle(src='/assets/img/avatar/avatar.jpg' alt='avatar')
+								.name
+									h5 #{post.author.name}
+						.detail
+							h2
+								a(href='blog-single-sidebar-right.html') #{post.title}
+							p
+								| #{post.description}
+							br
+							.row.clearfix.tags-socal-box
+								.col-lg-7.col-md-7.col-sm-7
+									.tags
+										h2 Tags
+										ul
+											li
+												a(href='#') Image
+											li
+												a(href='#') Features
+											li
+												a(href='#') Gallery
+											li
+												a(href='#') News
+								.col-lg-5.col-md-5.col-sm-5
+									.social-list
+										h2 Share
+										ul
+											li
+												a.facebook(href='#')
+													i.fa.fa-facebook
+											li
+												a.twitter(href='#')
+													i.fa.fa-twitter
+											li
+												a.google(href='#')
+													i.fa.fa-google
+											li
+												a.linkedin(href='#')
+													i.fa.fa-linkedin
+											li
+												a.rss(href='#')
+													i.fa.fa-rss
+					// Comments section start
+					//- .comments-section
+					//- 	h3.heading-3 Comments Section
+					//- 	ul.comments
+					//- 		li
+					//- 			.comment
+					//- 				.comment-author
+					//- 					a(href='#')
+					//- 						img(src='/assets/img/avatar/avatar-13.jpg' alt='avatar-13')
+					//- 				.comment-content
+					//- 					.comment-meta
+					//- 						.comment-meta-author
+					//- 							| Brandon Miller
+					//- 						.comment-meta-reply
+					//- 							a(href='#') Reply
+					//- 						.comment-meta-date
+					//- 							cite 8:42 PM 10/3/2020
+					//- 					.clearfix
+					//- 					.comment-body
+					//- 						p
+					//- 							| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus tincidunt aliquam. Aliquam gravida massa at sem vulputate interdum et vel eros. Maecenas eros enim, tincidunt vel turpis vel, dapibus tempus nulla.
+					//- 			ul
+					//- 				li
+					//- 					.comment
+					//- 						.comment-author
+					//- 							a(href='#')
+					//- 								img(src='/assets/img/avatar/avatar-13.jpg' alt='avatar-13')
+					//- 						.comment-content
+					//- 							.comment-meta
+					//- 								.comment-meta-author
+					//- 									| Antony John
+					//- 								.comment-meta-reply
+					//- 									a(href='#') Reply
+					//- 								.comment-meta-date
+					//- 									span 8:42 PM 10/3/2020
+					//- 							.clearfix
+					//- 							.comment-body
+					//- 								p
+					//- 									| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus tincidunt aliquam. Aliquam gravida massa at sem vulputate interdum.
+					//- 		li
+					//- 			.comment
+					//- 				.comment-author
+					//- 					a(href='#')
+					//- 						img(src='/assets/img/avatar/avatar-13.jpg' alt='avatar-13')
+					//- 				.comment-content
+					//- 					.comment-meta
+					//- 						.comment-meta-author
+					//- 							| Jane Doe
+					//- 						.comment-meta-reply
+					//- 							a(href='#') Reply
+					//- 						.comment-meta-date
+					//- 							span 8:42 PM 10/3/2020
+					//- 					.clearfix
+					//- 					.comment-body
+					//- 						p
+					//- 							| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec luctus tincidunt aliquam. Aliquam gravida massa at sem vulputate interdum et vel eros. Maecenas eros enim, tincidunt vel turpis vel, dapibus tempus nulla. Donec vel nulla dui.
+					//- // Contact 3 start
+					//- .contact-3
+					//- 	h3.heading-3 Leave a Comment
+					//- 	.container
+					//- 		.row
+					//- 			form(action='#' method='GET' enctype='multipart/form-data')
+					//- 				.row
+					//- 					.col-lg-6.col-md-6.col-sm-12.col-xs-12
+					//- 						.form-group.name
+					//- 							input.form-control(type='text' name='name' placeholder='Name')
+					//- 					.col-lg-6.col-md-6.col-sm-12.col-xs-12
+					//- 						.form-group.email
+					//- 							input.form-control(type='email' name='email' placeholder='Email')
+					//- 					.col-lg-6.col-md-6.col-sm-12.col-xs-12
+					//- 						.form-group.subject
+					//- 							input.form-control(type='text' name='subject' placeholder='Subject')
+					//- 					.col-lg-6.col-md-6.col-sm-12.col-xs-12
+					//- 						.form-group.number
+					//- 							input.form-control(type='text' name='phone' placeholder='Number')
+					//- 					.col-lg-12.col-md-12.col-sm-12.col-xs-12
+					//- 						.form-group.message
+					//- 							textarea.form-control(name='message' placeholder='Write message')
+					//- 					.col-lg-6.col-md-12.col-sm-12.col-xs-12
+					//- 						.send-btn.mb-50
+					//- 							button.btn.btn-color.btn-md.btn-message(type='submit') Send Message
+				.col-lg-4.col-md-12
+					.sidebar.mbl.mb-50
+						// Search box start
+						.widget.search-box
+							h5.sidebar-title Search
+							form.form-search(method='GET')
+								input.form-control(type='text' placeholder='Search')
+								button.btn(type='submit')
+									i.fa.fa-search
+						// Categories start
+						.widget.categories
+							h5.sidebar-title Categories
+							ul
+								li
+									a(href='#')
+										| Apartments
+										span (12)
+								li
+									a(href='#')
+										| Houses
+										span (8)
+								li
+									a(href='#')
+										| Family Houses
+										span (23)
+								li
+									a(href='#')
+										| Offices
+										span (5)
+								li
+									a(href='#')
+										| Villas
+										span (63)
+								li
+									a(href='#')
+										| Other
+										span (7)
+						// Recent posts start
+						.widget.recent-posts
+							h5.sidebar-title Recent Properties
+							each recentProperty in recentProperties
+								+recentProperties(recentProperty)
+							// Recent comments start
+							//- .widget.recent-comments
+							//- 	h5.sidebar-title Recent comments
+							//- 	.media.mb-4
+							//- 		a(href='#')
+							//- 			img(src='/assets/img/avatar/avatar.jpg' alt='recent-comments')
+							//- 		.media-body
+							//- 			h5 Brandon Miller
+							//- 			p Lorem Ipsum is simply dummy text of the printing and.
+							//- 	.media
+							//- 		a(href='#')
+							//- 			img(src='/assets/img/avatar/avatar-2.jpg' alt='recent-comments')
+							//- 		.media-body
+							//- 			h5 Antony John
+							//- 			p Lorem Ipsum is simply dummy text of the printing and.
+
+

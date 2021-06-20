@@ -1,0 +1,47 @@
+extends base
+
+mixin agentTab(agent)
+	.col-xl-3.col-lg-3.col-md-6.col-sm-6
+		.agent-2
+			.agent-photo
+				img.img-fluid(src=`/assets/img/avatar/${agent.photo}` alt='agent-grid-2')
+			.agent-details
+				h5
+					a(href='agent-detail.html') #{agent.name}
+				p #{agent.role.toUpperCase()}
+
+block content 
+	.sub-banner
+		.container
+			.breadcrumb-area
+				h1 #{title}
+				ul.breadcrumbs
+					li
+						a(href='/') Home
+					li.active Agents
+	// Sub banner end
+	// agent start
+	.agent.content-area-2
+		.container
+			.row
+				each agent in agents
+					if agent.photo
+						+agentTab(agent)
+
+
+				//- .col-lg-12
+				//- 	.pagination-box.text-center
+				//- 		nav(aria-label='Page navigation example')
+				//- 			ul.pagination
+				//- 				li.page-item
+				//- 					a.page-link(href='agent-grid.html')
+				//- 						span(aria-hidden='true') &laquo;
+				//- 				li.page-item
+				//- 					a.page-link(href='agent-grid.html') 1
+				//- 				li.page-item
+				//- 					a.page-link.active(href='agent-grid-2.html') 2
+				//- 				li.page-item
+				//- 					a.page-link(href='agent-grid-3.html') 3
+				//- 				li.page-item
+				//- 					a.page-link(href='agent-grid-3.html')
+				//- 						span(aria-hidden='true') &raquo;

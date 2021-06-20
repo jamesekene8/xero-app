@@ -1,0 +1,131 @@
+doctype html
+// Mirrored from theme-vessel-templates.theme-vessel.ey.r.appspot.com/xero/ by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 24 May 2021 15:00:45 GMT
+head
+  // Google Tag Manager
+  script.
+    (function (w, d, s, l, i) {
+    w[l] = w[l] || [];
+    w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+    var f = d.getElementsByTagName(s)[0],
+    j = d.createElement(s),
+    dl = l != "dataLayer" ? "&l=" + l : "";
+    j.async = true;
+    j.src = "../../www.googletagmanager.com/gtm5445.html?id=" + i + dl;
+    f.parentNode.insertBefore(j, f);
+    })(window, document, "script", "dataLayer", "GTM-PDTWJ3Z");
+  // End Google Tag Manager
+  title XeroHotels | #{title_bar}
+  meta(name='viewport' content='width=device-width, initial-scale=1.0')
+  meta(charset='UTF-8')
+  // External CSS libraries
+  link(href='https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css' rel='stylesheet' integrity='sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x' crossorigin='anonymous')
+  link(type='text/css' rel='stylesheet' href='/assets/css/bootstrap.min.css')
+  link(type='text/css' rel='stylesheet' href='/assets/css/magnific-popup.css')
+  link(type='text/css' rel='stylesheet' href='/assets/css/jquery.selectBox.css')
+  link(type='text/css' rel='stylesheet' href='/assets/css/dropzone.css')
+  link(type='text/css' rel='stylesheet' href='/assets/css/rangeslider.css')
+  link(type='text/css' rel='stylesheet' href='/assets/css/animate.min.css')
+  link(type='text/css' rel='stylesheet' href='/assets/css/leaflet.css')
+  link(type='text/css' rel='stylesheet' href='/assets/css/slick.css')
+  link(type='text/css' rel='stylesheet' href='/assets/css/slick-theme.css')
+  link(type='text/css' rel='stylesheet' href='/assets/css/map.css')
+  link(type='text/css' rel='stylesheet' href='/assets/css/jquery.mCustomScrollbar.css')
+  link(type='text/css' rel='stylesheet' href='/assets/fonts/font-awesome/css/font-awesome.min.css')
+  link(type='text/css' rel='stylesheet' href='/assets/fonts/flaticon/font/flaticon.css')
+
+
+
+  // Favicon icon
+  link(rel='shortcut icon' href='/assets/img/favicon.ico' type='image/x-icon')
+  // Google fonts
+  link(rel='stylesheet' type='text/css' href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800%7CPlayfair+Display:400,700%7CRoboto:100,300,400,400i,500,700')
+  // Custom Stylesheet
+  link(type='text/css' rel='stylesheet' href='/assets/css/style.css')
+  link#style_sheet(rel='stylesheet' type='text/css' href='/assets/css/skins/default.css')
+
+
+
+// Google Tag Manager (noscript)
+noscript
+  iframe(src='https://www.googletagmanager.com/ns.html?id=GTM-PDTWJ3Z' height='0' width='0' style='display: none; visibility: hidden')
+// End Google Tag Manager (noscript)
+.page_loader
+// Top header start
+header#top-header-2.top-header.th-bg
+  .container
+    .row
+      .col-lg-9.col-md-9.col-sm-7
+        .list-inline
+          if user
+            a
+              i.fa.fa-phone
+              | #{user.phone ? user.phone : "xxx"}
+          if user
+            a
+              i.fa.fa-envelope
+              | #{user.email}
+      .col-lg-3.col-md-3.col-sm-5
+        ul.top-social-media.pull-right
+          if !user
+            li
+              a.sign-in(href='/login')
+                i.fa.fa-sign-in
+                |  Login
+            li  
+              a.sign-in(href='/register')
+                i.fa.fa-user
+                |  Signup
+          if user
+            li
+              a.sign-in(href=`/user`)
+                i.fa.fa-user
+                |  profile
+            li       
+              a.sign-in.logout--btn
+                i.fa.fa-user
+                |  Logout
+// Top header end
+// main header start
+include _header
+// main header end
+// Banner start
+block content
+// Our newslatters end
+// Footer start
+include _footer
+// External JS libraries
+
+script(src='https://js.stripe.com/v3/')
+
+script(src='/assets/js/jquery-2.2.0.min.js')
+script(src='/assets/js/popper.min.js')
+script(src='/assets/js/bootstrap.min.js')
+script(src='/assets/js/jquery.selectBox.js')
+script(src='/assets/js/rangeslider.js')
+script(src='/assets/js/jquery.magnific-popup.min.js')
+script(src='/assets/js/jquery.filterizr.js')
+script(src='/assets/js/wow.min.js')
+script(src='/assets/js/backstretch.js')
+script(src='/assets/js/jquery.countdown.js')
+script(src='/assets/js/jquery.scrollUp.js')
+script(src='/assets/js/particles.min.js')
+script(src='/assets/js/typed.min.js')
+script(src='/assets/js/dropzone.js')
+script(src='/assets/js/jquery.mb.YTPlayer.js')
+script(src='/assets/js/leaflet.js')
+script(src='/assets/js/leaflet-providers.js')
+script(src='/assets/js/leaflet.markercluster.js')
+script(src='/assets/js/slick.min.js')
+script(src='/assets/js/maps.js')
+script(src='/assets/js/jquery.mCustomScrollbar.concat.min.js')
+script(src='https://maps.googleapis.com/maps/api/js?key=AIzaSyB0N5pbJN10Y1oYFRd0MJ_v2g8W2QT74JE')
+script(src='/assets/js/ie-emulation-modes-warning.js')
+// Custom JS Script
+script(src='/assets/js/app.js')
+
+
+// Bootstrap script end
+
+script(src='/assets/js/bundle.js')
+script(src='https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js' integrity='sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4' crossorigin='anonymous')
+

@@ -1,0 +1,286 @@
+extends base
+
+mixin relProp(prop)
+	.col-md-6
+		.property-box-7
+			.property-thumbnail
+				a.property-img(href=`/estate/${prop.slug}`)
+					.tag-2 For Rent
+					.price-box
+						span $#{prop.price}
+					img.img-fluid(src=`/assets/img/property/${prop.image}` alt='property')
+			.detail
+				h1.title
+					a(href=`/estate/${prop.slug}`) #{prop.title}
+				.location
+					a(href=`/estate/${prop.slug}`)
+						i.flaticon-facebook-placeholder-for-locate-places-on-maps
+						| #{prop.city}
+			ul.facilities-list.clearfix
+				li
+					span Beds
+					|  #{prop.beds}
+				li
+					span Baths
+					|  #{prop.bathrooms}
+				if prop.garage
+					li
+						span Garage
+						|  #{prop.garage}
+			.footer.clearfix
+				.pull-left.days
+					p
+						i.fa.fa-user
+						|  #{prop.realtor.name}
+
+
+block content
+	.sub-banner
+		.container
+			.breadcrumb-area
+				h1 #{title}
+				ul.breadcrumbs
+					li
+						a(href='/') Home
+					li.active Property Detail
+	// Sub banner end
+	// Properties details page start
+	.properties-details-page.content-area-2
+		.container
+			.row
+				.col-lg-12
+					#propertiesDetailsSlider.carousel.properties-details-sliders.slide.mb-60
+						.heading-properties-2
+							.row
+								.col-lg-12
+									.informeson
+										h1
+											| #{estate.title}
+											span $#{estate.price}
+										div
+											.float-left
+												ul.clearfix
+													li
+														i.flaticon-bed
+														|  Bed #{estate.beds}
+													li
+														i.flaticon-bath
+														|  Bathrooms #{estate.bathrooms}
+													li
+														i.flaticon-car-repair
+														|  Garage #{estate.garage}
+													li
+														i.flaticon-balcony-and-door
+														|  Balcony #{estate.balcony}
+											.float-right
+												p $#{estate.price} / year
+						// main slider carousel items
+						.carousel-inner
+							- let i = 0
+							each imgs in estate.imageCover
+								if i == 0
+									.active.item.carousel-item(data-slide-number=`${i}`)
+										img.img-fluid(src=`/assets/img/property/${imgs}` alt='properties-photo')
+								if i > 0
+									.item.carousel-item(data-slide-number=`${i}`)
+										img.img-fluid(src=`/assets/img/property/${imgs}` alt='properties-photo')
+								- i = i + 1
+						// main slider carousel nav controls
+						ul.carousel-indicators.sp-2.smail-properties.list-inline.nav.nav-justified
+							- let j = 0
+							each imgs in estate.imageCover
+								if j == 0
+									li.list-inline-item.active
+										a.selected(data-slide-to=`${j}` data-target='#propertiesDetailsSlider' id=`carousel-selector-${j}`)
+											img.img-fluid(src=`/assets/img/property/${imgs}` alt='properties-photo-smale')
+								if j > 0
+									li.list-inline-item
+										a(data-slide-to=`${j}` data-target='#propertiesDetailsSlider' id=`carousel-selector-${j}`)
+											img.img-fluid(src=`/assets/img/property/${imgs}` alt='properties-photo-smale')
+								- j = j + 1
+
+			.row
+				.col-lg-8.col-md-12.slider
+					// Property description start
+					.property-description.mb-60
+						h3.heading-3 Property Description
+						p
+							| #{estate.description}
+
+
+					// Amenities box start
+					.amenities-box.af.mb-45
+						h3.heading-3 Condition
+						.row
+							.col-md-4.col-sm-6
+								ul
+									li
+										span
+											i.flaticon-draw-check-mark
+											|  #{estate.bedrooms} Bedrooms
+									li
+										span
+											i.flaticon-draw-check-mark
+											|  #{estate.bathrooms} Bathroom
+							.col-md-4.col-sm-6
+								ul
+									if estate.garage
+										li
+											span
+												i.flaticon-draw-check-mark
+												|  #{estate.garage} Garage
+									if estate.balcony
+										li
+											span
+												i.flaticon-draw-check-mark
+												|  #{estate.balcony} Balcony
+					.features-opions.mb-45
+						h3.heading-3 Features
+						.row
+							.col-md-4.col-sm-6
+								ul
+									if estate.AirConditioning
+										li
+											i.flaticon-air-conditioner
+											|                                     Air conditioning
+									if estate.wifi
+										li
+											i.flaticon-wifi-connection-signal-symbol
+											|                                     Wifi
+									if estate.pool
+										li
+											i.flaticon-swimmer
+											|                                     Swimming Pool
+									if estate.privateSpace
+										li
+											i.flaticon-green-park-city-space
+											|                                     Private space
+							.col-md-4.col-sm-6
+								ul
+									if estate.phone
+										li
+											i.flaticon-old-typical-phone
+											|                                     Telephone
+									if estate.parking
+										li
+											i.flaticon-parking
+											|                                     Parking
+									if estate.tv
+										li
+											i.flaticon-monitor
+											|                                     TV
+									if estate.homeTheatre
+										li
+											i.flaticon-theatre-masks
+											|                                     Home Theater
+							.col-md-4.col-sm-6
+								ul
+									if estate.alarm
+										li
+											i.fa.fa-clock-o
+											|                                     Alarm
+									if estate.security
+										li
+											i.flaticon-padlock
+											|                                     Security
+									if estate.gym
+										li
+											i.flaticon-weightlifting
+											|                                     Gym
+									if estate.electricRange
+										li
+											i.flaticon-idea
+											|                                     Electric Range
+					// Comments section start
+					if reviews.length > 0
+						.comments-section.mb-60
+							h3.heading-3 Review Section
+							ul.comments
+								each review in reviews
+									li
+										.comment
+											.comment-author
+												a(href='#')
+													img(src=`/assets/img/avatar/${review.user.photo}` alt='avatar-13')
+											.comment-content
+												.comment-meta
+													.comment-meta-author
+														| #{review.user.name}
+													.comment-meta-date
+														cite #{review.createdAt.toDateString()}
+												.clearfix
+												.comment-body
+													p
+														| #{review.description}
+
+					// Contact 3 start
+					.contact-3#div-for-comment(style='display: none')
+						h3.heading-3 Leave a Comment
+						.container
+							.row
+								form#form-for-review
+									.row
+										.col-lg-6.col-md-6.col-sm-12.col-xs-12
+											.form-group.number
+												input.form-control#reviewedEstateId(type='text' name='phone' placeholder='Number' value=`${estate._id}`  hidden)
+										.col-lg-12.col-md-12.col-sm-12.col-xs-12
+											.form-group.message
+												textarea.form-control#review-description(name='message' placeholder='Write message')
+										.col-lg-6.col-md-12.col-sm-12.col-xs-12
+											.send-btn.mb-50
+												button.btn.btn-color.btn-md.btn-message#the-review-btn(type='submit') Review
+								// Features opions start
+
+					// Related properties start
+					if relatedProperties
+						.related-properties.hedin-mb-30
+							h3.heading-3 Related Properties
+							.row
+								each relatedPropery in relatedProperties
+									+relProp(relatedPropery)
+
+				.col-lg-4.col-md-12
+					.sidebar.mbl
+						// Search area start
+
+						// Categories start
+						.widget.categories
+							h5.sidebar-title Contact Realtor
+							h6
+								img.img-fluid(alt=`${estate.realtor.name}` src=`/assets/img/avatar/${estate.realtor.photo}`)
+							h6 Name:
+								p #{estate.realtor.name}
+							h6 Email
+								p #{estate.realtor.email}
+							if estate.realtor.phone
+								h6 Phone:
+									p #{estate.realtor.phone} 
+							//- a.search-button.btn-md.btn-color#book-estate(data-estate-id = `${estate._id}`)
+							//- 	| Rent Property
+							
+							if user
+								if user.role !== 'realtor'
+									if bookings.length > 0
+										each booking, index in bookings 
+											- const reviewed = reviews.filter(e => JSON.stringify(e.user._id) === JSON.stringify(user._id))
+											if reviewed.length > 0
+												- break
+											if JSON.stringify(booking.user._id) === JSON.stringify(user._id)
+												button.search-button.btn-md.btn-color#review-button(data-estate-id = `${estate._id}` style="background-color: green; color: white")
+													| Leave a review
+												- break
+											if bookings[index + 1] === undefined 
+												a.search-button.btn-md.btn-color#book-estate(data-estate-id = `${estate._id}`)
+													| Rent Property
+									else
+										a.search-button.btn-md.btn-color#book-estate(data-estate-id = `${estate._id}`)
+											| Rent Property
+							if !user
+								a.search-button.btn-md.btn-color(href="/login")
+										| Login to rent property
+
+
+
+
+
+

@@ -1,0 +1,85 @@
+extends base
+
+mixin properties(est)
+	.property-box-5.p-box
+		.row
+			.col-lg-5.col-md-12.col-pad
+				.property-thumbnail
+					a.property-img(href='properties-details.html')
+						.listing-badges
+							span.featured Featured
+						.tag-for For Rent
+						.price-ratings-box
+							p.price
+								| $#{est.price}
+							//- .ratings
+							//- 	i.fa.fa-star
+							//- 	i.fa.fa-star
+							//- 	i.fa.fa-star
+							//- 	i.fa.fa-star
+							//- 	i.fa.fa-star-o
+						img.img-fluid(src=`/assets/img/property/${est.image}` alt='property-box-5')
+					.property-overlay
+			.col-lg-7.col-md-12.align-self-center.col-pad
+				.detail
+					// title
+					h1.title
+						a(href=`/estate/${est.slug}`) #{est.title}
+					// Location
+					.location
+						a
+							i.fa.fa-map-marker
+							| #{est.city}
+					// Paragraph
+					p
+						| #{est.description}
+					// Facilities list
+					ul.facilities-list.clearfix
+						li
+							i.flaticon-bed
+							|  #{est.beds} Beds
+						li
+							i.flaticon-bath
+							|  #{est.bathrooms} Baths
+						if est.garage
+							li
+								i.flaticon-car-repair
+								|  1 Garage
+
+block content
+	.sub-banner
+		.container
+			.breadcrumb-area
+				h1 #{title}
+				ul.breadcrumbs
+					li
+						a(href='/') Home
+					li.active Properties Listing
+	// Sub banner end
+	// properties list fullwidth start
+	.properties-list-fullwidth.content-area-2
+		.container
+			.subtitle
+				| #{estates.length} Result Found
+			.row
+				.col-lg-12
+					each est in estates
+						+properties(est)
+					.pagination-box.text-center
+						nav(aria-label='Page navigation example')
+							if totalPages > 1
+								ul.pagination
+									//- li.page-item
+									//- 	a.page-link(href='properties-list-leftside.html')
+									//- 		span(aria-hidden='true') &laquo;
+									- x = Array.from(Array(totalPages + 1).keys()).slice(1)
+									each i in x
+										li.page-item.pag_properties
+											a.page-link(href=`/estates?page=${i}&limit=5`) #{i}
+									//- li.page-item
+									//- 	a.page-link(href='properties-list-leftside.html') 2
+									//- li.page-item
+									//- 	a.page-link.active(href='properties-list-fullwidth.html') 3
+									//- li.page-item
+									//- 	a.page-link(href='#')
+									//- 		span(aria-hidden='true') &raquo;

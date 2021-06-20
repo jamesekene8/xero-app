@@ -1,0 +1,59 @@
+extends base
+
+mixin blogTab(post)
+	.blog-1
+		.blog-photo
+			img.img-fluid(src=`/assets/img/blog/${post.coverImage}` alt='blog')
+			.user
+				.avatar
+					img.img-fluid.rounded-circle(src=`/assets/img/avatar/${post.author.photo}` alt='avatar')
+				.name
+					h5 #{post.author.name}
+		.detail
+			h2
+				a(href=`/blog/${post.slug}`) #{post.title}
+			p
+				- const length = 300
+				- const postDesc = post.description.length > length ? post.description.substring(0, length - 3) + '...' : post.description
+				| #{[postDesc]}
+			.blog-footer.clearfix
+				.float-left
+					p.date
+						i.flaticon-calendar
+						|  #{post.createdAt.toDateString()}
+				.float-right
+					a(href=`/blog/${post.slug}`) Read more..
+
+
+block content
+	.sub-banner
+		.container
+			.breadcrumb-area
+				h1 #{title}
+				ul.breadcrumbs
+					li
+						a(href='index-2.html') Home
+					li.active Blog Posts
+	// Sub banner end
+	// Blog section start
+	.blog-section.content-area-2
+		.container
+			.row
+				.col-lg-10.offset-lg-1.col-md-12
+					each post in posts
+						+blogTab(post)
+					.pagination-box.text-center
+						nav(aria-label='Page navigation example')
+							ul.pagination
+								li.page-item
+									a.page-link(href='#')
+										span(aria-hidden='true') &laquo;
+								li.page-item
+									a.page-link.active(href='#') 1
+								li.page-item
+									a.page-link(href='#') 2
+								li.page-item
+									a.page-link(href='#') 3
+								li.page-item
+									a.page-link(href='#')
+										span(aria-hidden='true') &raquo;

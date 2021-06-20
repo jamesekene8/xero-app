@@ -1,0 +1,340 @@
+extends base
+
+mixin propertyList(property)
+	tbody.responsive-table.prop_listing
+		tr
+			td.listing-photoo
+				img.img-fluid(alt='my-properties' src=`assets/img/property/${property.image}`)
+			td.title-container
+				h5
+					a(href=`/estate/${property.slug}`) #{property.title}
+				h6
+					span $#{property.price}
+					|  / monthly
+				p
+					i.flaticon-facebook-placeholder-for-locate-places-on-maps
+					|  #{property.city}
+			td.date
+				| #{property.createdAt.toDateString()}
+			td.action
+				ul
+					li.prop_hide
+						a
+							i.fa.fa-eye-slash
+							|  Hide
+					li.prop_edit(estateId=`${property._id}`)
+						a.delete
+							i.fa.fa-remove
+							|  Delete
+
+
+
+mixin propertyListRented(property, booking)
+	tbody.responsive-table.prop_listing
+		tr
+			td.listing-photoo
+				img.img-fluid(alt='my-properties' src=`assets/img/property/${property.image}`)
+			td.title-container
+				h5
+					a(href=`/estate/${property.slug}`) #{property.title}
+				h6
+					span $#{property.price}
+					|  / year
+				p
+					i.flaticon-facebook-placeholder-for-locate-places-on-maps
+					|  #{property.city}
+			td.date
+				| #{booking.createdAt.toDateString()}
+			td.action
+				ul
+					li.prop_hide
+						- const dateOfExpiration = new Date(booking.createdAt.setFullYear(booking.createdAt.getFullYear() + 1))
+						a #{dateOfExpiration.toDateString()}
+					li.prop_edit(estateId=`${property._id}`)
+
+
+
+
+mixin usersList(user)
+	tbody.responsive-table.users_Listing
+		tr
+			td.listing-photoo
+				img.img-fluid(alt=`${user.name}` src=`/assets/img/avatar/${user.photo}`)
+			td.title-container
+				h5
+					a #{user.name}
+				h6
+					span #{user.email}
+			td.date#edit_role_tab
+				| #{user.role}
+			td.action
+				ul
+					li.prop_hide
+						a
+							i.fa.fa-eye-slash
+							|  Hide
+					li.user_delete(userId=`${user._id}`)
+						a.delete
+							i.fa.fa-remove
+							|  Delete
+
+mixin estatesList(estate)
+	tbody.responsive-table.estates_Listing
+		tr
+			td.listing-photoo
+				img.img-fluid(alt=`${estate.title}` src=`/assets/img/property/${estate.image}`)
+			td.title-container
+				h5
+					a(href=`/estate/${estate.slug}`) #{estate.title}
+				h6
+					- const length = 50
+					- const estateDesc = estate.description.length > length ? estate.description.substring(0, length - 3) + '...' : estate.description
+					span #{estateDesc}
+				p
+					i.flaticon-facebook-placeholder-for-locate-places-on-maps
+					|  #{estate.city}
+			td.date#edit_role_tab
+				| #{estate.createdAt.toDateString()}
+			td.action
+				ul
+					li.estate_hide
+						a
+							i.fa.fa-eye-slash
+							|  Hide
+					li.estate_delete(estateId=`${estate._id}`)
+						a.delete
+							i.fa.fa-remove
+							|  Delete
+
+mixin blogList(blog)
+	tbody.responsive-table.blog_Listing
+		tr
+			td.listing-photoo
+				img.img-fluid(alt=`${blog.title}` src=`/assets/img/blog/${blog.coverImage}`)
+			td.title-container
+				h5
+					a(href=`/blog/${blog.slug}`) #{blog.title}
+				h6
+					- const length = 50
+					- const blogDesc = blog.description.length > length ? blog.description.substring(0, length - 3) + '...' : blog.description
+					span #{blogDesc}
+			td.date#edit_role_tab
+				| #{blog.createdAt.toDateString()}
+			td.action
+				ul
+					li.blog_hide
+						a
+							i.fa.fa-eye-slash
+							|  Hide
+					li.blog_delete(blogId=`${blog._id}`)
+						a.delete
+							i.fa.fa-remove
+							|  Delete
+
+block content
+	.sub-banner
+		.container
+			.breadcrumb-area
+				h1 My Profile
+				ul.breadcrumbs
+					li
+						a(href='/') Home
+					li.active My Profile
+	// Sub banner end
+	// User page start
+	.user-page.content-area-7.submit-property
+		.container
+			.row
+				.col-lg-4.col-md-12.col-sm-12
+					.user-profile-box.mrb
+						// header
+						.header.clearfix
+							h2 #{user.name}
+							h4 #{user.role}
+							img.img-fluid.profile-img(src=`/assets/img/avatar/${user.photo}` alt='avatar')
+						// Detail
+						.detail.clearfix
+							ul
+								li.tab_profile
+									a#profile-btn(href='user-profile.html')
+										i.flaticon-user
+										| Profile
+								if user.role == 'admin'
+									li.tab_profile
+										a#users-btn(href='#')
+											i.flaticon-user
+											i.flaticon-user
+											| All Users
+									li.tab_profile
+										a#estates-btn(href='#')
+											i.flaticon-house
+											| All Estates
+									li.tab_profile
+										a#blog-btn(href='#')
+											i.flaticon-add
+											| Blogs
+								if user.role === 'realtor'
+									li.tab_profile
+										a#properties_tab
+											i.flaticon-house
+											| My Properties
+								if user.role === 'realtor'
+									li.tab_profile
+										a(href='/submit_property')
+											i.flaticon-add
+											| Submit New Property
+								if user.role === 'author'
+									li.tab_profile
+										a(href='/submit_post')
+											i.flaticon-add
+											| Submit New Post
+									li.tab_profile
+										a#blog_tab
+											i.flaticon-house
+											| My Posts
+								if user.role === 'lessee'
+									li.tab_profile
+										a#myproperty_tab
+											i.flaticon-house
+											| Rented property
+								li.tab_profile
+									a#change-pass(href='/change-password')
+										i.flaticon-locked-padlock
+										| Change Password
+				.col-lg-8.col-md-12.col-sm-12
+					.my-address.contact-2#profile-settings
+						h3.heading-3 Profile Details
+						.my_alerts
+						form#form-user-data
+							.row
+								.col-lg-12
+									.form-group.name
+										label Your Name
+										input#name.form-control(type='text' name='name' placeholder='John Deo' value=`${user.name}`)
+								.col-lg-12
+									.form-group.email
+										label Your Title
+										input#title.form-control(type='text' name='title' placeholder='Your Title' value=`${user.title ? user.title: ''}`)
+								.col-lg-12
+									.form-group.subject
+										label Phone
+										input#phone.form-control(type='text' name='phone' placeholder='Phone' value=`${user.phone ? user.phone : ""}`)
+								.col-lg-12
+									.form-group.number
+										label Email
+										input#email.form-control(type='email' name='email' placeholder='Email' value=`${user.email}`)
+								.col-lg-12
+									.form-group.role
+										label Do you want to be a realtor or Lessee?
+										select.selectpicker.search-fields#role--selection(name='role')
+											option(value=`${user.role}` disabled selected hidden) #{user.role}
+											option(value="realtor") Realtor
+											option(value="lessee") Lessee
+								.col-lg-12
+									.form-group.message
+										label About
+										textarea#about.form-control(name='about' placeholder='Write about yourself...' ) #{user.about ? user.about : ""}
+								.col-lg-12 
+									.form-group.photo 
+										label Upload Photo 
+										input.form__upload(type="file", accept="image/*", id='photo', name='photo')
+								.col-lg-12
+									.send-btn
+										button.btn.btn-color.btn-md.btn-message(type='submit') Save Changes
+					.my-address.contact-2.change-password#change_my_password(style='display: none')
+						h3.heading Change Password
+						.my_alerts
+						form.form-user-password
+							.row
+								.col-lg-12
+									.form-group.name
+										label Current Password
+										input#password-current.form-control(type='password' name='current-password' placeholder='Current Password')
+								.col-lg-12
+									.form-group.email
+										label New Password
+										input#newPassword.form-control(type='password' name='new-password' placeholder='New Password')
+								.col-lg-12
+									.form-group.subject
+										label Confirm New Password
+										input#newPassword-confirm.form-control(type='password' name='confirm-new-password' placeholder='Confirm New Password')
+								.col-lg-12
+									.send-btn
+										button.btn.btn-color.btn-md.btn-message(type='submit') Save Changes
+					.my-address.contact-2#my_properties(style='display: none')
+						.my-properties
+							table.manage-table
+								thead
+									tr
+										th My Properties
+										th
+										th Date
+										th Actions
+								if properties
+									each property in properties
+										+propertyList(property)
+					.my-address.contact-2#my_users(style='display: none')
+						.my-properties
+							table.manage-table
+								thead
+									tr
+										th User
+										th
+										th Role
+										th Actions
+								if users
+									each agent in users
+										+usersList(agent)
+					.my-address.contact-2#all_estates(style='display: none')
+						.my-properties
+							table.manage-table
+								thead
+									tr
+										th Title
+										th
+										th createdAt
+										th Actions
+								if estates
+									each estate in estates
+										+estatesList(estate)
+					.my-address.contact-2#all_blogs(style='display: none')
+						.my-properties
+							table.manage-table
+								thead
+									tr
+										th Title
+										th
+										th createdAt
+										th Actions
+								if blogs
+									each blog in blogs
+										+blogList(blog)
+					.my-address.contact-2#author_blogs(style='display: none')
+						.my-properties
+							table.manage-table
+								thead
+									tr
+										th Title
+										th
+										th createdAt
+										th Actions
+								if authorBlogs
+									each authorBlog in authorBlogs
+										+blogList(authorBlog)
+					.my-address.contact-2#myLessee_properties(style='display: none')
+						.my-properties
+							table.manage-table
+								thead
+									tr
+										th My Properties
+										th
+										th Date Booked
+										th Rent expiration
+								if lesseeEstates
+									each property, index in lesseeEstates
+										+propertyListRented(property, bookings[index])
+
+					
+
+
+

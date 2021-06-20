@@ -1,0 +1,35 @@
+header#main-header-2.main-header.sticky-header
+  .container
+    .row
+      .col-12
+        nav.navbar.navbar-expand-lg.navbar-light.rounded
+          a.navbar-brand.logo(href='/')
+            img(src='/assets/img/logos/logo.png' alt='logo')
+          button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbar' aria-controls='navbar' aria-expanded='false' aria-label='Toggle navigation')
+            span.fa.fa-bars
+          #navbar.collapse.navbar-collapse
+            ul.navbar-nav.justify-content-end.ml-auto
+              li.nav-item.dropdown.active
+                a#navbarDropdownMenuLink.nav-link.dropdown-toggle(href='/')
+                  | Home
+              li.nav-item.dropdown
+                a#navbarDropdownMenuLink2.nav-link.dropdown-toggle(href='/estates')
+                  | Properties
+              li.nav-item.dropdown
+                a#navbarDropdownMenuLink6.nav-link.dropdown-toggle(href='/agents')
+                  | Agents
+              li.nav-item.dropdown
+                a#navbarDropdownMenuLink5.nav-link.dropdown-toggle(href='/blogs')
+                  | Blog
+              li.nav-item.dropdown
+                a#navbarDropdown3.nav-link.dropdown-toggle(href='/contact-us')
+                  | Contact
+              if user
+                if user.role === 'realtor'
+                  li.nav-item.sb2
+                    a.submit-btn(href='/submit_property')
+                      | Submit Property
+                if user.role === 'author'
+                  li.nav-item.sb2
+                    a.submit-btn(href='/submit_post')
+                      | Create Post

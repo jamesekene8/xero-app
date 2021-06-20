@@ -1,0 +1,42 @@
+extends base
+
+block content 
+	.sub-banner
+		.container
+			.breadcrumb-area
+				h1 Create Post
+				ul.breadcrumbs
+					li
+						a(href='/') Home
+					li.active Create Post
+	// Sub banner end
+	// User page start
+	.user-page.submit-property.content-area-7
+		.container
+			.row
+				.col-lg-12
+					.search-area.contact-2
+						.search-area-inner
+							.search-contents
+								form#submit_post_form
+									h3.heading-3 Basic Information
+									.row.mb-30
+										.col-lg-4.col-lg-12
+											.form-group
+												label Post Title
+												input#title_of_post.form-control(type='text' name='blog-title' placeholder='Blog Title')
+										
+									h3.heading-3 Post Image 
+										.col-lg-12 
+											.form-group.photo 
+												label Upload Post Image
+												input.form__upload(type="file", accept="image/*", id='photo_blog', name='photo')
+
+									h3.heading-3 Detailed Information
+									.row.mb-30
+										.col-lg-12
+											.form-group.message
+												label Detailed Information
+												textarea.form-control(name='message' placeholder='Detailed Information' id="blog_description")
+										.col-lg-12
+											button.btn.btn-md.btn-color(type="submit") Submit
