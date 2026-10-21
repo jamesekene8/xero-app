@@ -1,9 +1,7 @@
 const catchAsync = require("../utils/catchAsync");
 const Realestate = require("../models/realestateModel");
 const Booking = require("../models/bookingModel");
-const stripe = require("stripe")(
-  "sk_test_51IziLWJQxirzeJ4nBFMUg9X4Qgo52iIloysUqwFJoN5XhFD5Ni8Ix6Txc7pbS3xNMWcmYOUCejtwb2y3Y4ybbQ9a00muBwls43"
-);
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
 exports.getCheckoutSession = catchAsync(async (req, res, next) => {
   const estate = await Realestate.findById(req.params.estateId);

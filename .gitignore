@@ -1,3 +1,15 @@
+# Dependencies
 node_modules/
+
+# Environment / secrets
 *.env
+config.env
+.env*
+!config.env.example
+
+# Parcel build cache
 .cache/
+
+# OS / editor
+.DS_Store
+.vscode/
